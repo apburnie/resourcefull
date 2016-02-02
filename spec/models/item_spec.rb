@@ -26,4 +26,14 @@ RSpec.describe Item, type: :model do
     end
   end
 
+  describe '#current_borrower' do
+    let(:user) { User.create name: 'sara', email: 'test@test.com',
+                              password: 'password', password_confirmation: 'password' }
+    let(:item) { Item.create name: 'My nice book', user_id: user.id  }
+
+    it 'should return the name of the initial borrower' do
+      expect(item.current_borrower).to eq 'sara'
+    end
+  end
+
  end

@@ -3,7 +3,8 @@
      <div class="col-md-4 col-sm-6">
        <%= image_tag item.image.url(:medium) %>
        <div>
-         <%= item.name %>
+         <h3><%= item.name %></h3>
+         <p>currently with <%= item.current_borrower %></p>
        </div>
      </div>
    <% end %>
