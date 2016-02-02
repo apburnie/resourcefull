@@ -1,6 +1,10 @@
-'Items'
-<ul>
+<div class="row">
    <% @items.each do |item| %>
-     <li> <%= item.name %> </li>
+     <div class="col-md-4 col-sm-6">
+       <%= image_tag item.image.url(:medium) %>
+       <div>
+         <%= item.name %>
+       </div>
+     </div>
    <% end %>
- </ul>
+</div>
