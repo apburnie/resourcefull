@@ -1,6 +1,9 @@
 'Items'
 <ul>
    <% @items.each do |item| %>
-     <li> <%= item.name %> </li>
+     <li>
+       <img src="<%= item.image_file_name %>">
+       <%= item.name %>
+     </li>
    <% end %>
  </ul>
