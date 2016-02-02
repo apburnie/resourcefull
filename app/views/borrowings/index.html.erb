@@ -1,1 +1,9 @@
-"Ruby book"
+<% if @items.any? %>
+  <% @items.each do |item| %>
+    <p>
+    <%= item.name %>
+    </p>
+  <% end %>
+<% else %>
+  <strong>You are not currently borrowing anything</strong>
+<% end %>
