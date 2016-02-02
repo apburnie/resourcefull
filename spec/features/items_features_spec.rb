@@ -2,12 +2,7 @@ require 'rails_helper'
 
 feature 'Items features' do
   before do
-    visit 'users/sign_up'
-    fill_in 'Email', with: 'test@email.com'
-    fill_in 'Name', with: 'Camilla'
-    fill_in 'Password', with: 'pass1234'
-    fill_in 'Password confirmation', with: 'pass1234'
-    click_button 'Sign up'
+    sign_up
   end
 
   feature 'Adding items' do
