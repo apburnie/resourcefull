@@ -14,7 +14,7 @@ feature 'Items features' do
     scenario 'should display the newly added item' do
       visit 'items/new'
       fill_in 'Name', with: 'Ruby book'
-      attach_file 'Image', 'spec/fixtures/test.jpg'
+      attach_file 'Image', './spec/fixtures/ruby.png'
       click_button 'Add item'
       expect(current_path).to eq '/'
       expect(page).to have_content 'Ruby book'
