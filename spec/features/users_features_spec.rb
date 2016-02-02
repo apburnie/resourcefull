@@ -14,15 +14,21 @@ describe 'User sessions' do
     # so that I can see who has the item I am interested in,
     # I need to sign up to the website
     it 'should allow a user to sign up with email, full name, password' do
-      visit 'users/sign_up'
-      fill_in 'Email', with: 'test@email.com'
-      fill_in 'Name', with: 'Camilla'
-      fill_in 'Password', with: 'pass1234'
-      fill_in 'Password confirmation', with: 'pass1234'
-      click_button 'Sign up'
+      sign_up
       expect(current_path).to eq '/'
       expect(page).to have_content 'Welcome'
     end
+
+    it 'should save a signed up user to the database' do
+      sign_up
+      expect(User.first.name).to have_content 'Camilla'
+    end
   end
 
+  describe 'signing out' do
+    it'should allow a user to sign out' do
+      sign_up
+      click_button 'Sign out'
+    end
+  end
 end
