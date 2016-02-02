@@ -16,6 +16,14 @@ feature 'Items features' do
       expect(page).to have_css 'img'
       expect(page).to have_content 'Thanks! Your item has been added'
     end
+
+    scenario 'should display error message if item name is too short/blak' do
+      visit 'items/new'
+      fill_in 'Name', with: 'bu'
+      attach_file 'Image', './spec/fixtures/ruby.png'
+      click_button 'Add item'
+      expect(page).to have_content 'Name is too short'
+    end
   end
 
   context 'Displaying items' do
