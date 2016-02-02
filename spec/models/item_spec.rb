@@ -6,4 +6,18 @@ RSpec.describe Item, type: :model do
     expect(item).to have(1).error_on(:name)
     expect(item).not_to be_valid
   end
+
+  describe '#build_with_user' do
+    let(:user) { User.create email: 'test@test.com' }
+    let(:item) { Item.create name: 'My nice book' }
+
+    it 'builds an item' do
+      expect(item).to be_a Item
+    end
+
+    it 'builds an item associated with the specified user' do
+      expect(item.user_id).to eq user.id
+    end
+  end
+
  end
