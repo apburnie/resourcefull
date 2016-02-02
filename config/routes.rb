@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations'}
   resources :items
+  get 'borrowings' => 'borrowings#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
