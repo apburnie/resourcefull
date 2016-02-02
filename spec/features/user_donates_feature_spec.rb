@@ -15,7 +15,7 @@ feature 'user donates an item' do
   it 'shows my items on the "my borrowings" page' do
     click_link("Sign out")
     sign_up(name:"Max", email:"max@email.com")
-    add_item(title:"My adventures")
+    add_item(name:"My adventures")
     click_link("My borrowings")
     expect(page).to have_content("My adventures")
     expect(page).not_to have_content("Ruby book")

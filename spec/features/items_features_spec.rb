@@ -9,7 +9,7 @@ feature 'Items features' do
       end
 
       scenario 'should display the newly added item' do
-        add_item(title: "Ruby book", path: './spec/fixtures/ruby.png')
+        add_item(name: "Ruby book", path: './spec/fixtures/ruby.png')
         expect(current_path).to eq '/'
         expect(page).to have_content 'Ruby book'
         expect(page).to have_css 'img'
@@ -17,7 +17,7 @@ feature 'Items features' do
       end
 
       scenario 'should display error message if item name is too short/blak' do
-        add_item(title: "bu")
+        add_item(name: "bu")
         expect(page).to have_content 'Name is too short'
       end
     end
@@ -33,16 +33,17 @@ feature 'Items features' do
 
   context 'Displaying items' do
     before do
-      Item.create(name: 'POODR')
-      Item.create(name: 'RSpec made Easy')
-      Item.create(name: 'Angular is fun!')
+      sign_up(name: 'Katie', email: 'katie@email.com')
+      add_item(name: "POODR")
+      click_link 'Sign out'
+      sign_up(name: 'Sara', email: 'sara@email.com')
+      add_item(name: "RSpec made Easy")
     end
 
-    scenario 'displays all items on the index page' do
+    scenario 'displays all items with the name of the borrower on the index' do
       visit '/'
-      expect(page).to have_content 'POODR'
-      expect(page).to have_content 'RSpec made Easy'
-      expect(page).to have_content 'Angular is fun!'
+      expect(page).to have_content 'POODR currently with Katie'
+      expect(page).to have_content 'RSpec made Easy currently with Sara'
     end
   end
 end
