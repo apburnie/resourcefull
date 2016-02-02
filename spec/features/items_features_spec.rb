@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Items features' do
+feature 'Items features' do
   before do
     visit 'users/sign_up'
     fill_in 'Email', with: 'test@email.com'
@@ -10,8 +10,8 @@ describe 'Items features' do
     click_button 'Sign up'
   end
 
-  describe 'Adding items' do
-    it 'should display the newly added item' do
+  feature 'Adding items' do
+    scenario 'should display the newly added item' do
       visit 'items/new'
       fill_in 'Name', with: 'Ruby book'
       click_button 'Add item'
@@ -21,4 +21,18 @@ describe 'Items features' do
     end
   end
 
+  context 'Displaying items' do
+    before do
+      Item.create(name: 'POODR')
+      Item.create(name: 'RSpec made Easy')
+      Item.create(name: 'Angular is fun!')
+    end
+
+    scenario 'displays all items on the index page' do
+      visit '/'
+      expect(page).to have_content 'POODR'
+      expect(page).to have_content 'RSpec made Easy'
+      expect(page).to have_content 'Angular is fun!'
+    end
+  end
 end
