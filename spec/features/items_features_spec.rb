@@ -10,7 +10,7 @@ feature 'Items features' do
     click_button 'Sign up'
   end
 
-  feature 'Adding items' do
+  feature 'Adding items when signed up' do
     scenario 'should display the newly added item' do
       visit 'items/new'
       fill_in 'Name', with: 'Ruby book'
