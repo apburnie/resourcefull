@@ -7,22 +7,39 @@ describe 'Initial setup' do
   end
 end
 
-describe 'User sessions' do
+feature 'User sessions' do
 
-  describe 'Signing up' do
+  context 'Signing up' do
     # As a user,
     # so that I can see who has the item I am interested in,
     # I need to sign up to the website
     it 'should allow a user to sign up with email, full name, password' do
-      visit 'users/sign_up'
-      fill_in 'Email', with: 'test@email.com'
-      fill_in 'Name', with: 'Camilla'
-      fill_in 'Password', with: 'pass1234'
-      fill_in 'Password confirmation', with: 'pass1234'
-      click_button 'Sign up'
+      sign_up
       expect(current_path).to eq '/'
       expect(page).to have_content 'Welcome'
     end
+
+    it 'should save a signed up user to the database' do
+      sign_up
+      expect(User.first.name).to have_content 'Camilla'
+    end
   end
+
+  context 'when signed in' do
+    before do
+      sign_up
+    end
+
+    it'should allow a user to sign out' do
+      expect(page).to have_link 'Sign out'
+    end
+
+    it "should not see a 'Log in' link and a 'sign up' link" do
+      visit('/')
+      expect(page).not_to have_link('Log in')
+      expect(page).not_to have_link('Sign up')
+    end
+  end
+
 
 end
