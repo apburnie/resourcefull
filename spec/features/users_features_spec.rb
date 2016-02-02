@@ -7,9 +7,9 @@ describe 'Initial setup' do
   end
 end
 
-describe 'User sessions' do
+feature 'User sessions' do
 
-  describe 'Signing up' do
+  context 'Signing up' do
     # As a user,
     # so that I can see who has the item I am interested in,
     # I need to sign up to the website
@@ -25,10 +25,21 @@ describe 'User sessions' do
     end
   end
 
-  describe 'signing out' do
-    it'should allow a user to sign out' do
+  context 'when signed in' do
+    before do
       sign_up
-      click_button 'Sign out'
+    end
+
+    it'should allow a user to sign out' do
+      expect(page).to have_link 'Sign out'
+    end
+
+    it "should not see a 'Log in' link and a 'sign up' link" do
+      visit('/')
+      expect(page).not_to have_link('Log in')
+      expect(page).not_to have_link('Sign up')
     end
   end
+
+
 end
