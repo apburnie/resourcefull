@@ -1,9 +1,14 @@
-<% if @items.any? %>
-  <% @items.each do |item| %>
-    <p>
-    <%= item.name %>
-    </p>
+<div class="row">
+  <% if @items.any? %>
+    <% @items.each do |item| %>
+      <div class="col-md-4 col-sm-6">
+        <%= image_tag item.image.url(:medium) %>
+        <div>
+          <%= item.name %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <strong>You are not currently borrowing anything</strong>
   <% end %>
-<% else %>
-  <strong>You are not currently borrowing anything</strong>
-<% end %>
+</div>
