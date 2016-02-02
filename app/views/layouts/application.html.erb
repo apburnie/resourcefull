@@ -13,9 +13,13 @@
   <body>
     <%= render "partials/navigationbar" %>
 
-    <div class="container">
-      <div class="alert alert-success notice" role="alert"><%= notice %></div>
-      <div class="alert alert-danger alert" role="alert"><%= alert %></div>
+    <div class="main container">
+      <% if notice %>
+        <div class="alert alert-success notice" role="alert"><%= notice %></div>
+      <% elsif alert %>
+        <div class="alert alert-danger alert" role="alert"><%= alert %></div>
+      <% end %>
+
       <%= yield %>
     </div>
 

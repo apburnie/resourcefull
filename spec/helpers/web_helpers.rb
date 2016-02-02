@@ -8,10 +8,9 @@ def sign_up(email:'test@email.com', name:"Camilla", password:"password")
   click_button 'Sign up'
 end
 
-def add_item(title: "Ruby book")
+def add_item(title: "Ruby book", path: './spec/fixtures/ruby.png')
   visit 'items/new'
   fill_in 'Name', with: title
+  attach_file 'Image', path
   click_button 'Add item'
-  expect(current_path).to eq '/'
-  expect(page).to have_content title
 end
