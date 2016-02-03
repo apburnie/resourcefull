@@ -45,6 +45,20 @@ feature 'Request items' do
           expect(page).to have_link "Transfer item"
           expect(page).to have_link "Decline"
         end
+
+        it "enables rejection of request" do
+          visit('/borrowings')
+          click_link "Decline"
+          expect(page).not_to have_content "Katie has requested this item"
+        end
+
+        it "Katie can rerequest the book" do
+          visit('/borrowings')
+          click_link "Decline"
+          click_link "Sign out"
+          log_in(email:'me@email.com', password:"Secret01")
+          expect(page).not_to have_content "Katie requested Ruby book"
+        end
       end
 
     end
