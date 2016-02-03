@@ -22,6 +22,7 @@ feature 'Request items' do
         sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
         click_link 'Request Ruby book'
         expect(page).to have_content 'Katie requested Ruby book'
+        expect(page).not_to have_link 'Request Ruby book'
       end
     end
   end

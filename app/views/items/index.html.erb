@@ -5,11 +5,10 @@
        <div>
          <h3><%= item.name %></h3>
          <p>currently with <%= item.current_borrower %></p>
-         <%= link_to "Request #{item.name}", new_item_request_path(item) %>
          <% if item.request %>
           <%= item.request.user.name %> requested <%= item.name %>
          <% else %>
-         there is no request
+         <%= link_to "Request #{item.name}", new_item_request_path(item) %>
          <% end %>
        </div>
      </div>
