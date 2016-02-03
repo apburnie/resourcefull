@@ -8,6 +8,6 @@ class RequestsController < ApplicationController
   def destroy
     @request = Request.find(params[:id])
     @request.destroy
-    redirect_to '/'
+    redirect_to '/borrowings'
   end
 end
