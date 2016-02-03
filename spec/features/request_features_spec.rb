@@ -24,6 +24,23 @@ feature 'Request items' do
         expect(page).to have_content 'Katie requested Ruby book'
         expect(page).not_to have_link 'Request Ruby book'
       end
+
+      context 'a request has been made' do
+        before do
+          visit '/items'
+          sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
+          click_link 'Request Ruby book'
+          click_link "Sign out"
+        end
+
+        it "alerts Camilla that a request has been made" do
+          log_in
+          visit('/borrowings')
+          expect(page).to have_content("You have requests")
+          expect(page).to have_link("Manage request")
+        end
+      end
+
     end
   end
 end
