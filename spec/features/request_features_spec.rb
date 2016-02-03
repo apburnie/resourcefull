@@ -22,14 +22,14 @@ feature 'Request items' do
         sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
         click_link "Request 'Ruby book'"
         expect(page).to have_content "Katie requested 'Ruby book'"
-        expect(page).not_to have_link 'Request Ruby book'
+        expect(page).not_to have_link "Request 'Ruby book'"
       end
 
       context 'a request has been made' do
         before do
           visit '/items'
           sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
-          click_link 'Request Ruby book'
+          click_link "Request 'Ruby book'"
           click_link "Sign out"
           log_in
         end
@@ -57,7 +57,7 @@ feature 'Request items' do
           click_link "Decline"
           click_link "Sign out"
           log_in(email:'me@email.com', password:"Secret01")
-          expect(page).not_to have_content "Katie requested Ruby book"
+          expect(page).not_to have_content "Katie requested 'Ruby book'"
         end
       end
 
