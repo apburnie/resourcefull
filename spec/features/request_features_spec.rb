@@ -52,6 +52,12 @@ feature 'Request items' do
           expect(page).not_to have_content "Katie has requested this item"
         end
 
+        it "allows a request to be accepted" do
+          visit('/borrowings')
+          click_link "Transfer item"
+          expect(page).not_to have_content "Ruby book"
+        end
+
         it "Katie can rerequest the book" do
           visit('/borrowings')
           click_link "Decline"
