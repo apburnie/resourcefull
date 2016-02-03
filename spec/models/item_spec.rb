@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   it { is_expected.to belong_to :user }
 
+
+
   it 'is not valid if the name is less than 3 characters' do
     item = Item.new(name: 'ok')
     expect(item).to have(1).error_on(:name)

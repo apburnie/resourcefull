@@ -17,11 +17,11 @@ feature 'Request items' do
         expect(page).to have_link 'Request Ruby book'
       end
 
-      xit 'shows Katie made a request' do
+      it 'shows Katie made a request' do
         visit '/items'
         sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
-        click_link 'Request'
-        expect(page).to have_content 'KRuby book'
+        click_link 'Request Ruby book'
+        expect(page).to have_content 'Katie requested Ruby book'
       end
     end
   end
