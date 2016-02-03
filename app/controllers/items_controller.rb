@@ -25,6 +25,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+    @item = Item.find(params[:id])
+    @item.user_id = @item.request.user_id
+    @item.request.destroy
+    @item.request = nil
+    @item.save
+    redirect_to borrowings_path
+  end
+
   private
 
   def required_params
