@@ -1,16 +1,26 @@
-<div class="row">
-   <% @items.each do |item| %>
-     <div class="col-md-4 col-sm-6">
-       <%= image_tag item.image.url(:medium) %>
-       <div>
-         <h3><%= item.name %></h3>
-         <p>currently with <%= item.current_borrower %></p>
-         <% if item.request %>
-          <%= item.request.user.name %> requested <%= item.name %>
-         <% else %>
-         <%= link_to "Request #{item.name}", new_item_request_path(item) %>
-         <% end %>
-       </div>
+<header>
+   <div class="container-fluid organisation-hero">
+   </div>
+</header>
+
+<div class="container">
+ <% @items.each do |item| %>
+   <div class="col-md-4 col-sm-6">
+     <div class="item-container">
+       <a>
+         <div class="item-hover"> </div>
+         <%= image_tag item.image.url(:medium), class: "item" %>
+         <div class="item-caption">
+           <h3><%= item.name %></h3>
+           <p>currently with <%= item.current_borrower %></p>
+           <% if item.request %>
+            <%= item.request.user.name %> requested <%= item.name %>
+           <% else %>
+           <%= link_to "Request #{item.name}", new_item_request_path(item) %>
+           <% end %>
+         </div>
+       </a>
      </div>
-   <% end %>
+   </div>
+ <% end %>
 </div>
