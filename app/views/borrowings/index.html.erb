@@ -5,6 +5,11 @@
         <%= image_tag item.image.url(:medium) %>
         <div>
           <%= item.name %>
+          <% if item.request %>
+          <%= item.request.user.name %> has requested this item
+          <a href="#">Transfer item</a>
+          <a href="#">Decline</a>
+          <% end %>
         </div>
       </div>
     <% end %>
