@@ -5,7 +5,9 @@ class RequestsController < ApplicationController
     redirect_to '/'
   end
 
-  def create
-    @request = Request
+  def destroy
+    @request = Request.find(params[:id])
+    @request.destroy
+    redirect_to '/borrowings'
   end
 end

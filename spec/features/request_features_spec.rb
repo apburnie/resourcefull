@@ -24,6 +24,43 @@ feature 'Request items' do
         expect(page).to have_content "Katie requested 'Ruby book'"
         expect(page).not_to have_link 'Request Ruby book'
       end
+
+      context 'a request has been made' do
+        before do
+          visit '/items'
+          sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
+          click_link 'Request Ruby book'
+          click_link "Sign out"
+          log_in
+        end
+
+        it "alerts Camilla that a request has been made" do
+          expect(page).to have_content("You have requests")
+          expect(page).to have_link("Manage request")
+        end
+
+        it "displays pending requests on borrowings page" do
+          visit('/borrowings')
+          expect(page).to have_content "Katie has requested this item"
+          expect(page).to have_link "Transfer item"
+          expect(page).to have_link "Decline"
+        end
+
+        it "enables rejection of request" do
+          visit('/borrowings')
+          click_link "Decline"
+          expect(page).not_to have_content "Katie has requested this item"
+        end
+
+        it "Katie can rerequest the book" do
+          visit('/borrowings')
+          click_link "Decline"
+          click_link "Sign out"
+          log_in(email:'me@email.com', password:"Secret01")
+          expect(page).not_to have_content "Katie requested Ruby book"
+        end
+      end
+
     end
   end
 end
