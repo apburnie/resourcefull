@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :requests
   end
+
   get 'borrowings' => 'borrowings#index'
 
   # Example of regular route:

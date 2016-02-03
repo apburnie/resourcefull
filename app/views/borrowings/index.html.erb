@@ -10,13 +10,13 @@
           <h3><%= item.name %></h3>
           <% if item.request %>
           <p><%= item.request.user.name %> has requested this item</p>
-          <a href="#" class="btn btn-primary">Transfer item</a>
+          <%= link_to "Transfer item", item_path(item), method: :put, class: "btn btn-primary"%>
           <%= link_to "Decline", item_request_path(item, item.request), method: :delete %>
           <% end %>
         </div>
       </div>
     <% end %>
   <% else %>
-    <h4>You are not currently borrowing anything</h4>
+    <p>You are not currently borrowing anything</p>
   <% end %>
 </div>
