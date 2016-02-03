@@ -13,6 +13,11 @@
          <div class="item-caption">
            <h3><%= item.name %></h3>
            <p>currently with <%= item.current_borrower %></p>
+           <% if item.request %>
+            <%= item.request.user.name %> requested <%= item.name %>
+           <% else %>
+           <%= link_to "Request #{item.name}", new_item_request_path(item) %>
+           <% end %>
          </div>
        </a>
      </div>
