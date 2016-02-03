@@ -4,6 +4,9 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+    if current_user && current_user.items.any? { |item| item.request }
+      flash[:alert] = %Q[You have requests pending. <a href="/borrowings">Manage requests</a>]
+    end
   end
 
   def new
