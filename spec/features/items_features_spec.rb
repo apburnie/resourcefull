@@ -31,19 +31,39 @@ feature 'Items features' do
     end
   end
 
-  context 'Displaying items' do
-    before do
-      sign_up(name: 'Katie', email: 'katie@email.com')
-      add_item(name: "POODR")
-      click_link 'Sign out'
-      sign_up(name: 'Sara', email: 'sara@email.com')
-      add_item(name: "RSpec made Easy")
+  feature 'Displaying items' do
+    context 'when logged in' do
+      before do
+        sign_up(name: 'Katie', email: 'katie@email.com')
+        add_item(name: "POODR")
+        click_link 'Sign out'
+        sign_up(name: 'Sara', email: 'sara@email.com')
+        add_item(name: "RSpec made Easy")
+      end
+
+      scenario 'displays all items with the name of the borrower on the index' do
+        visit '/'
+        expect(page).to have_content 'POODR currently with Katie'
+        expect(page).to have_content 'RSpec made Easy currently with Sara'
+      end
     end
 
-    scenario 'displays all items with the name of the borrower on the index' do
-      visit '/'
-      expect(page).to have_content 'POODR currently with Katie'
-      expect(page).to have_content 'RSpec made Easy currently with Sara'
+    context 'when not logged in' do
+      before do
+        sign_up(name: 'Katie', email: 'katie@email.com')
+        add_item(name: "POODR")
+        click_link 'Sign out'
+        sign_up(name: 'Sara', email: 'sara@email.com')
+        add_item(name: "RSpec made Easy")
+        click_link 'Sign out'
+      end
+
+      scenario 'does not display current owner of items or link to request' do
+        visit '/'
+        expect(page).not_to have_content 'POODR currently with Katie'
+        expect(page).not_to have_content 'RSpec made Easy currently with Sara'
+        expect(page).to have_content 'Login to request'
+      end
     end
   end
 end
