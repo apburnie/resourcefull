@@ -1,25 +1,25 @@
 <header>
    <div class="container-fluid organisation-hero">
+     <img src="https://pbs.twimg.com/profile_images/3087236754/91e379b7e0006d38ee0526946a38a1ea_400x400.png" class="organisation-logo img-rounded">
    </div>
 </header>
 
 <div class="container">
+  <h2>Makers library</h2>
  <% @items.each do |item| %>
    <div class="col-md-4 col-sm-6">
      <div class="item-container">
-       <a>
          <div class="item-hover"> </div>
          <%= image_tag item.image.url(:medium), class: "item" %>
          <div class="item-caption">
            <h3><%= item.name %></h3>
            <p>currently with <%= item.current_borrower %></p>
            <% if item.request %>
-            <%= item.request.user.name %> requested <%= item.name %>
+            <p class="requested-by"><%= item.request.user.name %> requested '<%= item.name %>'</p>
            <% else %>
-           <%= link_to "Request #{item.name}", new_item_request_path(item) %>
+           <%= link_to "Request '#{item.name}'", new_item_request_path(item), class: "btn btn-default" %>
            <% end %>
          </div>
-       </a>
      </div>
    </div>
  <% end %>
