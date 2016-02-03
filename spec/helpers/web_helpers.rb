@@ -16,7 +16,7 @@ end
 
 def add_item(name: "Ruby book", path: './spec/fixtures/ruby.png')
   visit 'items/new'
-  fill_in 'Name', with: name
-  attach_file 'Image', path
+  fill_in 'item_name', with: name
+  attach_file 'item_image', path
   click_button 'Add item'
 end
