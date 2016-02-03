@@ -5,11 +5,12 @@
        <div>
          <h3><%= item.name %></h3>
          <p>currently with <%= item.current_borrower %></p>
-         <a href="#">Request <%= item.name %></a>
-         <!-- <% unless item.request.nil? %>
-         <p><%= item.request.user.name %></p>
-         <% end %> -->
-         <!-- <p><%= item.request %></p> -->
+         <%= link_to "Request #{item.name}", new_item_request_path(item) %>
+         <% if item.request %>
+          <%= item.request.user.name %> requested <%= item.name %>
+         <% else %>
+         there is no request
+         <% end %>
        </div>
      </div>
    <% end %>
