@@ -14,22 +14,22 @@ feature 'Request items' do
         sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
         expect(current_path).to eq '/'
         expect(page).to have_content 'Ruby book'
-        expect(page).to have_link "Request 'Ruby book'"
+        expect(page).to have_link "Request"
       end
 
       it 'shows Katie made a request' do
         visit '/items'
         sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
-        click_link "Request 'Ruby book'"
+        click_link "Request"
         expect(page).to have_content "Katie requested 'Ruby book'"
-        expect(page).not_to have_link "Request 'Ruby book'"
+        expect(page).not_to have_link "Request"
       end
 
       context 'a request has been made' do
         before do
           visit '/items'
           sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
-          click_link "Request 'Ruby book'"
+          click_link "Request"
           click_link "Sign out"
           log_in
         end

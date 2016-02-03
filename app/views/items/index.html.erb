@@ -17,7 +17,7 @@
              <% if item.request %>
                 <p class="requested-by"><%= item.request.user.name %> requested '<%= item.name %>'</p>
              <% else %>
-              <%= link_to "Request '#{item.name}'", new_item_request_path(item), class: "btn btn-default" %>
+              <%= link_to "Request", new_item_request_path(item), class: "btn btn-default" %>
              <% end %>
            <% else %>
             <p><%= link_to "Login", new_user_session_path %> to request</p>
