@@ -5,7 +5,9 @@
     <% @items.each do |item| %>
     <div class="col-md-4 col-sm-6">
       <div class="item-container">
-        <%= image_tag item.image.url(:medium), class: "item" %>
+        <div class="fill">
+          <%= image_tag item.image.url(:medium), class: "item" %>
+        </div>
         <div class="item-caption">
           <h3><%= item.name %></h3>
           <% if item.request %>

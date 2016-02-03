@@ -10,7 +10,10 @@ h1,h2,h3,h4,h5 {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 30px;
+}
+
+h2 {
+  margin-bottom: 40px;
 }
 
 // Navbar
@@ -59,17 +62,18 @@ h1,h2,h3,h4,h5 {
   margin-bottom: 30px;
 }
 .organisation-logo {
-  max-width: 150px;
+  max-width: 140px;
   margin: 0 auto -20px auto;
   display: block;
 }
 
 // Items
 .item-container {
-  height: 300px;
+  height: 380px;
   position: relative;
   overflow: hidden;
   margin-bottom: 30px;
+  box-shadow: 0px 0px 5px #DADADA;
   a {
     color: #444444;
   }
@@ -85,10 +89,20 @@ h1,h2,h3,h4,h5 {
   text-align: center;
   width: 100%;
   box-sizing: border-box;
+  height: 135px;
 }
 
-img.item {
-  width: 100%;
+.fill {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    height:244px;
+}
+.fill img.item {
+    flex-shrink:0;
+    min-width:100%;
+    min-height:100%
 }
 
 .requested-by {
@@ -109,7 +123,7 @@ form label {
 }
 
 .btn {
-  margin: 20px auto;
+  margin: 3px auto 12px auto;
 }
 
 form .btn {
