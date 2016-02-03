@@ -6,6 +6,10 @@
          <h3><%= item.name %></h3>
          <p>currently with <%= item.current_borrower %></p>
          <a href="#">Request <%= item.name %></a>
+         <!-- <% unless item.request.nil? %>
+         <p><%= item.request.user.name %></p>
+         <% end %> -->
+         <!-- <p><%= item.request %></p> -->
        </div>
      </div>
    <% end %>
