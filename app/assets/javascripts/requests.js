@@ -1,17 +1,20 @@
-$(document).ready(function() {
+var ready;
+ready = function() {
   $('.cancel-link').on('click', function(event) {
     event.preventDefault();
-    event.stopImmediatePropagation();
+    event.stopPropagation();
 
-    var link = $(this).href;
-    console.log(link);
+    var self = this;
 
-    $.ajax({
-      url: link,
-      type: 'DELETE',
+    $.ajax( self.href, {
+      method: $(self).attr('data-method'),
       success: function(result) {
-        self.closest('.item-caption').load(document.URL + '.item-caption');
+        var itemCaption = $(self).closest('.item-caption');
+        itemCaption.load('/ #'+$(self).closest('.item-caption').attr('id'));
       }
     });
   });
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
