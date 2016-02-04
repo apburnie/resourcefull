@@ -22,19 +22,19 @@ $ cd resourcefull
 ```
 $ bundle
 ```
+
+3. Install Homebrew and then use this to install ImageMagick:
+```
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ brew install imagemagick --build-from-source
+```
 ​
-3. A database created and auto-migrate run:
+4. A database created and auto-migrate run:
 ```
 $ createdb resourcefull_development
 $ bin/rake db:migrate RAILS_ENV=development
 ```
 Note: the `createdb` command assumes that [PostgreSQL](http://postgresapp.com) has been installed on the computer.
-
-4. Install Homebrew and then use this to install ImageMagick:
-```
-$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-$ brew install imagemagick --build-from-source
-```
 ​
 ## Usage
 ​
