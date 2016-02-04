@@ -13,7 +13,8 @@ class RequestsController < ApplicationController
       redirect_to '/borrowings'
     else
       @request.destroy
-      redirect_to '/'
+      flash[:notice] = "You have cancelled your request"
+      render json: {something: 'else'}
     end
   end
 end
