@@ -18,7 +18,12 @@
          <div class="item-caption">
            <h3><%= item.name %></h3>
            <% if current_user %>
-             <% if item.request %>
+              <% if item.request && item.request.user == current_user %>
+                <p class="pending-request">
+                  You requested this from <%= item.user.name %>
+                  <%= link_to "Cancel", item_request_path(item, item.request), method: :delete %>
+                </p>
+              <% elsif item.request %>
                 <p class="pending-request">Request pending</p>
               <% elsif current_user.id == item.user_id %>
                 <p class="pending-request">You are borrowing this!</p>

@@ -17,54 +17,60 @@ feature 'Request items' do
         expect(page).to have_link "Request"
       end
 
-      it 'shows Katie made a request' do
-        visit '/items'
-        sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
-        click_link "Request"
-        expect(page).to have_content "Request pending"
-        expect(page).to have_content "Ruby book requested! Get in touch with Camilla to get it"
-        expect(page).not_to have_link "Request"
-      end
-
       context 'a request has been made' do
         before do
           visit '/items'
           sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
           click_link "Request"
-          click_link "Sign out"
-          log_in
         end
 
-        it "alerts Camilla that a request has been made" do
-          expect(page).to have_content("You have requests")
-          expect(page).to have_link("Manage request")
+        it 'shows Katie made a request' do
+          expect(page).to have_content "You requested this from Camilla"
+          expect(page).to have_content "Ruby book requested! Get in touch with Camilla to get it"
+          expect(page).not_to have_link "Request"
         end
 
-        it "displays pending requests on borrowings page" do
-          visit('/borrowings')
-          expect(page).to have_content "Have you given this to Katie?"
-          expect(page).to have_link "Yup, item transferred!"
-          expect(page).to have_link "Decline"
+        it 'allows Katie to cancel her request' do
+          expect(page).to have_link "Cancel"
         end
 
-        it "enables rejection of request" do
-          visit('/borrowings')
-          click_link "Decline"
-          expect(page).not_to have_content "Katie has requested this item"
-        end
+        context 'when signed in as Camilla' do
+          before do
+            click_link "Sign out"
+            log_in
+          end
 
-        it "allows a request to be accepted" do
-          visit('/borrowings')
-          click_link "Yup, item transferred!"
-          expect(page).not_to have_content "Ruby book"
-        end
+          it "alerts Camilla that a request has been made" do
+            expect(page).to have_content("You have requests")
+            expect(page).to have_link("Manage request")
+          end
 
-        it "Katie can rerequest the book" do
-          visit('/borrowings')
-          click_link "Decline"
-          click_link "Sign out"
-          log_in(email:'me@email.com', password:"Secret01")
-          expect(page).not_to have_content "Katie requested 'Ruby book'"
+          it "displays pending requests on borrowings page" do
+            visit('/borrowings')
+            expect(page).to have_content "Have you given this to Katie?"
+            expect(page).to have_link "Yup, item transferred!"
+            expect(page).to have_link "Decline"
+          end
+
+          it "enables rejection of request" do
+            visit('/borrowings')
+            click_link "Decline"
+            expect(page).not_to have_content "Katie has requested this item"
+          end
+
+          it "allows a request to be accepted" do
+            visit('/borrowings')
+            click_link "Yup, item transferred!"
+            expect(page).not_to have_content "Ruby book"
+          end
+
+          it "Katie can rerequest the book" do
+            visit('/borrowings')
+            click_link "Decline"
+            click_link "Sign out"
+            log_in(email:'me@email.com', password:"Secret01")
+            expect(page).not_to have_content "Katie requested 'Ruby book'"
+          end
         end
       end
 
