@@ -43,8 +43,8 @@ feature 'Items features' do
 
       scenario 'displays all items with the name of the borrower on the index' do
         visit '/'
-        expect(page).to have_content 'POODR currently with Katie'
-        expect(page).to have_content 'RSpec made Easy currently with Sara'
+        expect(page).to have_content 'POODR Katie'
+        expect(page).to have_content 'RSpec made Easy You are borrowing this!'
       end
     end
 

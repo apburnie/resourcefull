@@ -5,7 +5,10 @@
 </header>
 
 <div class="container">
-  <h2>Makers library</h2>
+  <div class="titles">
+    <h1>Makers library</h1>
+    <h4>Request the next thing you want to borrow</h4>
+  </div>
  <% @items.each do |item| %>
    <div class="col-md-4 col-sm-6">
      <div class="item-container">
@@ -15,17 +18,21 @@
          <div class="item-caption">
            <h3><%= item.name %></h3>
            <% if current_user %>
-            <p>currently with <%= item.current_borrower %></p>
              <% if item.request %>
-                <p class="requested-by"><%= item.request.user.name %> requested '<%= item.name %>'</p>
-             <% else %>
-              <%= link_to "Request", new_item_request_path(item), class: "btn btn-default" %>
+                <p class="pending-request">Request pending</p>
+              <% elsif current_user.id == item.user_id %>
+                <p class="pending-request">You are borrowing this!</p>
+              <% else %>
+              <p><%=fa_icon "user"%>  <%=item.current_borrower%></p>
+              <%= link_to "Request", new_item_request_path(item), class: "btn btn-primary btn-lg" %>
              <% end %>
            <% else %>
-            <p><%= link_to "Login", new_user_session_path %> to request</p>
+            <p class="pending-request"><%= link_to "Login", new_user_session_path %> to request</p>
            <% end %>
          </div>
      </div>
    </div>
  <% end %>
 </div>
+<footer>
+</footer>

@@ -1,6 +1,9 @@
 <div class="main container">
-  <h2> Add an item </h2>
   <%= form_for @item, html: {multipart: true} do |f| %>
+  <div class="titles">
+    <h2> Add item </h2>
+    <h4>Donate to the Makers Library!</h4>
+  </div>
     <div class="form-group">
       <%= f.text_field :name, class: "form-control", placeholder: 'Name your item' %>
     </div>

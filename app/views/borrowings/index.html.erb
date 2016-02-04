@@ -1,6 +1,7 @@
 <div class="main container">
-  <h2>My Borrowings</h2>
-
+  <div class="titles">
+    <h2>My Borrowings</h2>
+  </div>
   <% if @items.any? %>
     <% @items.each do |item| %>
     <div class="col-md-4 col-sm-6">
@@ -11,8 +12,8 @@
         <div class="item-caption">
           <h3><%= item.name %></h3>
           <% if item.request %>
-          <p><%= item.request.user.name %> has requested this item</p>
-          <%= link_to "Transfer item", item_path(item), method: :put, class: "btn btn-primary"%>
+          <p>Have you given this to <%= item.request.user.name %>?</p>
+          <%= link_to "Yup, item transferred!", item_path(item), method: :put, class: "btn btn-primary"%>
           <%= link_to "Decline", item_request_path(item, item.request), method: :delete %>
           <% end %>
         </div>
@@ -23,3 +24,5 @@
     <p>You are not currently borrowing anything</p>
   <% end %>
 </div>
+<footer>
+</footer>
