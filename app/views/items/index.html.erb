@@ -18,8 +18,12 @@
          <div class="item-caption">
            <h3><%= item.name %></h3>
            <% if current_user %>
-             <% if item.request %>
-                <p><%=fa_icon "user"%>  <%=item.current_borrower%></p>
+              <% if item.request && item.request.user == current_user %>
+                <p class="pending-request">
+                  You requested this from <%= item.user.name %>
+                  <a href="#">Cancel</a>
+                </p>
+              <% elsif item.request %>
                 <p class="pending-request">Request pending</p>
               <% elsif current_user.id == item.user_id %>
                 <p class="pending-request">You are borrowing this!</p>

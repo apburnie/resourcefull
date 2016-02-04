@@ -25,13 +25,13 @@ feature 'Request items' do
         end
 
         it 'shows Katie made a request' do
-          expect(page).to have_content "Request pending"
+          expect(page).to have_content "You requested this from Camilla"
           expect(page).to have_content "Ruby book requested! Get in touch with Camilla to get it"
           expect(page).not_to have_link "Request"
         end
 
         it 'allows Katie to cancel her request' do
-
+          expect(page).to have_link "Cancel"
         end
 
         context 'when signed in as Camilla' do
@@ -71,6 +71,7 @@ feature 'Request items' do
             log_in(email:'me@email.com', password:"Secret01")
             expect(page).not_to have_content "Katie requested 'Ruby book'"
           end
+        end
       end
 
     end
