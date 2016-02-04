@@ -12,24 +12,24 @@ followed the [Design Sprint](https://developers.google.com/design-sprint/?hl=en)
 ​
 ## Installation
 ​
-1. The repository should be cloned and the directory changed into:
+* The repository should be cloned and the directory changed into:
 ```
 $ git clone git@github.com:allimac/resourcefull.git
 $ cd resourcefull
 ```
 ​
-2. Bundle run:
+* Run Bundle:
 ```
 $ bundle
 ```
 
-3. Install Homebrew and then use this to install ImageMagick:
+* Install Homebrew and then use this to install ImageMagick:
 ```
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 $ brew install imagemagick --build-from-source
 ```
 ​
-4. A database created and auto-migrate run:
+* A database created and auto-migrate run:
 ```
 $ createdb resourcefull_development
 $ bin/rake db:migrate RAILS_ENV=development
