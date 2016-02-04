@@ -1,13 +1,13 @@
 ![Resourcefull](public/logo.png)
 ================================
 
-* This uses a test-driven approach with both unit tests using [RSpec](http://rspec.info) and
+This uses a test-driven approach with both unit tests using [RSpec](http://rspec.info) and
 feature tests using [Capybara](https://github.com/jnicklas/capybara) to create a
 [Ruby on Rails](http://rubyonrails.org) web application.
 ​
-* Both [ActiveRecord](http://guides.rubyonrails.org/active_record_querying.html) and [PostgreSQL](http://www.postgresql.org) were used.
+Both [ActiveRecord](http://guides.rubyonrails.org/active_record_querying.html) and [PostgreSQL](http://www.postgresql.org) were used.
 ​
-* Program development used [Ishikawa Diagrams](https://www.mindtools.com/pages/article/newTMC_03.htm) and
+Program development used [Ishikawa Diagrams](https://www.mindtools.com/pages/article/newTMC_03.htm) and
 followed the [Design Sprint](https://developers.google.com/design-sprint/?hl=en) process.
 ​
 ## Installation
