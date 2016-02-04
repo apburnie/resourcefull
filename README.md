@@ -1,4 +1,5 @@
 ![Resourcefull](public/logo.png)
+================================
 
 * This uses a test-driven approach with both unit tests using [RSpec](http://rspec.info) and
 feature tests using [Capybara](https://github.com/jnicklas/capybara) to create a
