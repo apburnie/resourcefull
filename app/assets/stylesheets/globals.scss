@@ -64,10 +64,11 @@ h4,h5 {
 
 // Notifications / Alerts
 .notifications {
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 60px;
   height: 60px;
+  z-index: 1;
 }
 
 .notifications .container {
