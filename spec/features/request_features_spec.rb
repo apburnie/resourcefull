@@ -31,7 +31,10 @@ feature 'Request items' do
         end
 
         it 'allows Katie to cancel her request' do
-          expect(page).to have_link "Cancel"
+          click_link 'Cancel'
+          expect(page).to have_link "You have cancelled your request"
+          expect(page).to have_content "Ruby book Katie"
+          expect(page).to have_link "Request"
         end
 
         context 'when signed in as Camilla' do

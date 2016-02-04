@@ -21,7 +21,7 @@
               <% if item.request && item.request.user == current_user %>
                 <p class="pending-request">
                   You requested this from <%= item.user.name %>
-                  <a href="#">Cancel</a>
+                  <p><%= link_to "Cancel", item_request_path(item, item.request), class: 'cancel-link', method: :delete, 'data-no-turbolink': true %></p>
                 </p>
               <% elsif item.request %>
                 <p class="pending-request">Request pending</p>
