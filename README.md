@@ -1,6 +1,3 @@
-Resourcefull
-=============
-
 ![Resourcefull](public/logo.png)
 
 * This uses a test-driven approach with both unit tests using [RSpec](http://rspec.info) and
