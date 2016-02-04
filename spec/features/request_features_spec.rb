@@ -21,7 +21,7 @@ feature 'Request items' do
         visit '/items'
         sign_up(email:'me@email.com', name:"Katie", password:"Secret01")
         click_link "Request"
-        expect(page).to have_content "Katie requested 'Ruby book'"
+        expect(page).to have_content "Request pending"
         expect(page).to have_content "Ruby book requested! Get in touch with Camilla to get it"
         expect(page).not_to have_link "Request"
       end
@@ -42,8 +42,8 @@ feature 'Request items' do
 
         it "displays pending requests on borrowings page" do
           visit('/borrowings')
-          expect(page).to have_content "Katie has requested this item"
-          expect(page).to have_link "Transfer item"
+          expect(page).to have_content "Have you given this to Katie?"
+          expect(page).to have_link "Yup, item transferred!"
           expect(page).to have_link "Decline"
         end
 
@@ -55,7 +55,7 @@ feature 'Request items' do
 
         it "allows a request to be accepted" do
           visit('/borrowings')
-          click_link "Transfer item"
+          click_link "Yup, item transferred!"
           expect(page).not_to have_content "Ruby book"
         end
 
