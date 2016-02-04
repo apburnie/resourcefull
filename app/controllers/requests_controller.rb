@@ -8,7 +8,12 @@ class RequestsController < ApplicationController
 
   def destroy
     @request = Request.find(params[:id])
-    @request.destroy
-    redirect_to '/borrowings'
+    if current_user == @request.item.user
+      @request.destroy
+      redirect_to '/borrowings'
+    else
+      @request.destroy
+      redirect_to '/'
+    end
   end
 end
